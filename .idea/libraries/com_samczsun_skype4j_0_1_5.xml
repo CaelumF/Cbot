@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="com.samczsun:skype4j:0.1.5" type="repository">
+    <properties maven-id="com.samczsun:skype4j:0.1.5" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/skype4j-0.1.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/skype4j-0.1.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/skype4j-0.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

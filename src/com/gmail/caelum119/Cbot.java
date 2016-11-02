@@ -4,10 +4,7 @@ import org.jibble.pircbot.Colors;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.PircBot;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -37,7 +34,6 @@ public class Cbot extends PircBot{
   public Cbot(){
     this.setName("Cbot3");
     addCommandListener(new Commands(this));
-
   }
 
   @Override protected void onMessage(String channel, String sender, String login, String hostname, String message){
@@ -209,7 +205,7 @@ public class Cbot extends PircBot{
     for(int i = 0; i < skippedChars.length; i++){
       char c = skippedChars[i];
       //Update inQuote status. Ignore if the quote is escaped.
-      if((c == '\'' || c == '\"') && skippedChars[i - 1] != '\\'){
+      if((c == '\'' || c == '\"') && ( i > 0 || skippedChars[i - 1] != '\\')){
         if(!inQuote){
           inQuote = true;
           quotedAt = i;

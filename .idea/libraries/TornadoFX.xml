@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="TornadoFX">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/tornadoFX" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/tornadoFX" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/tornadoFX" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/tornadoFX" recursive="false" type="SOURCES" />
+  </library>
+</component>
