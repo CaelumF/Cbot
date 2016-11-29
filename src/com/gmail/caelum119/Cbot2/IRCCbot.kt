@@ -22,17 +22,18 @@ open class IRCCBot(val serverName: String = "irc.freenode.org",
 
     /**                                 Server, channel **/
     val connectedServers = HashMap<Pair<String, String>, IRCContext>()
+
     val botName = "Cbot"
 
 
     init {
-        this.name = "namexxx"
+        this.name = "Muleaec"
     }
 
     override fun run() {
         Welcomer
         Identity
-        connect(globalIRCBot.serverName, 6667, "password")
+        connect(globalIRCBot.serverName, 6667, "Saegold1")
     }
 
     override fun sendMessage(message: String) {
@@ -42,10 +43,11 @@ open class IRCCBot(val serverName: String = "irc.freenode.org",
     override fun onMessage(channel: String?, sender: String?, login: String?, hostname: String?, message: String?) {
         super.onMessage(channel, sender, login, hostname, message)
         val context = connectedServers[Pair(server, channel)]
-        if(context != null) {
+        if (context != null) {
             onMessageCallbacks.forEach { it.invoke(Message.createMessage(sender ?: "Null", message ?: "", context)) }
-        }else{
+        } else {
             /**This must have been connected to a channel not using [connectToChannel] **/
+
         }
     }
 
@@ -54,20 +56,21 @@ open class IRCCBot(val serverName: String = "irc.freenode.org",
         onJoinCallbacks.forEach { it.invoke(channel, sender, login, hostname) }
     }
 
-    fun connectToChannel(server: String, channel: String, serverPort: Int = 6667, password: String?){
+    fun connectToChannel(server: String, channel: String, serverPort: Int = 6667, password: String?) {
         try {
             if (password == null) connect(server, port)
             if (password != null) connect(server, port, password)
-        }catch (e: IrcException){
+        } catch (e: IrcException) {
             throw e
         }
         val newContext = IRCContext(server, channel, this)
         connectedServers.put(Pair(server, channel), newContext)
     }
+
     /**
      * TODO: Fix this hack
      */
-    companion object globalIRCBot: IRCCBot() {
+    companion object globalIRCBot : IRCCBot() {
         /**
          * So that future implementations will
          */

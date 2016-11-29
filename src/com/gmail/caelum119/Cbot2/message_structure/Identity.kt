@@ -22,14 +22,17 @@ class Identity(val name: String, val login: String, val hostname: String) {
         val identities = HashMap<String, Identity>()
 
         init {
-            IRCCBot.globalIRCBot.addJoinCallback { channel, sender, login, hostname ->
-                //Create new Identity if they're not registered.
-                val identity = identities[sender]
-                if(identity == null){
-                    val newIdentity = Identity(sender, login, hostname)
-                    newIdentity.connectedChannels.add(channel)
-                    EventHandler.throwEvent(UserWelcomeEvent(login, newIdentity, channel))
-                    identities[sender] = newIdentity
+            //Identities are shared across channels, servers and domains.
+            IRCContext.onNewIRCContext.add { ircContext ->
+                ircContext.addJoinCallback { channel, sender, login, hostname ->
+                    //Create new Identity if they're not registered.
+                    val identity = identities[sender]
+                    if (identity == null) {
+                        val newIdentity = Identity(sender, login, hostname)
+                        newIdentity.connectedChannels.add(channel)
+                        EventHandler.throwEvent(UserWelcomeEvent(login, newIdentity, channel))
+                        identities[sender] = newIdentity
+                    }
                 }
             }
         }

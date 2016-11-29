@@ -15,17 +15,20 @@ class Console : View() {
 
     init {
         with(root) {
-            textarea {
-                isEditable = false
-                FXUtils.anchor(top = 0.0, bottom = 20.0, left = 0.0, right = 0.0, node = this)
+            for(i in 0 .. 10) {
+                textarea {
+                    isEditable = false
 
-                IRCCBot.globalIRCBot.addMessageOutCallback { this@textarea.text += "\n Sent: $it" }
-                IRCCBot.globalIRCBot.addMessageCallback {
-                    val domain = it.context.domain
-                    val server = it.context.server
-                    val channel = it.context.channel
-                    this@textarea.text += "\n $domain:$server:$channel: ${it.sender.name}: ${it.originalMessageString}"
-                    this@textarea.scrollTop = this.maxHeight
+                    FXUtils.anchor(top = 0.0, bottom = 20.0, left = 0.0, right = 0.0, node = this)
+
+                    IRCCBot.globalIRCBot.addMessageOutCallback { this@textarea.text += "\n Sent: $it" }
+                    IRCCBot.globalIRCBot.addMessageCallback {
+                        val domain = it.context.domain
+                        val server = it.context.server
+                        val channel = it.context.channel
+                        this@textarea.text += "\n $domain:$server:$channel: ${it.sender.name}: ${it.originalMessageString}"
+                        this@textarea.scrollTop = this.maxHeight
+                    }
                 }
             }
             textfield {

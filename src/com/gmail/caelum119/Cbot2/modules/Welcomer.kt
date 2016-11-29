@@ -8,7 +8,10 @@ import com.gmail.caelum119.utils.event.EventSettings
 /**
  * First created 10/16/2016 in Cbot
  */
-object Welcomer {
+object Welcomer: Module() {
+    override val moduleSettings: Module.() -> Unit = {
+
+    }
 
     init {
         EventHandler.addEventListener(this, this)
