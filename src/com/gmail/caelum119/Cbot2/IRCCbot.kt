@@ -14,7 +14,9 @@ import java.util.*
  * each bot would be connected to several channels and servers
  */
 open class IRCCBot(val serverName: String = "irc.freenode.org",
-                   val channelName: String = "##CoderdojoBots") : PircBot(), CBot, Runnable {
+                   val channelName: String = "##CoderdojoBots",
+                   val loginName: String = "Unnamed",
+                   val loiginPassword: String = "") : PircBot(), Runnable, CBot {
 
     override val onMessageOutCallbacks: ArrayList<(String) -> Unit> = ArrayList()
     override val onMessageCallbacks = ArrayList<(message: Message) -> Unit>()
@@ -27,13 +29,14 @@ open class IRCCBot(val serverName: String = "irc.freenode.org",
 
 
     init {
-        this.name = "Muleaec"
+        this.name = "xxxadeefg"
     }
 
     override fun run() {
         Welcomer
         Identity
-        connect(globalIRCBot.serverName, 6667, "Saegold1")
+        connect(serverName)
+        joinChannel(channelName)
     }
 
     override fun sendMessage(message: String) {

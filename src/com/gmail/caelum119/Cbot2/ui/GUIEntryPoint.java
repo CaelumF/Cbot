@@ -15,12 +15,12 @@ public class GUIEntryPoint extends App{
 
     }
 
-    @NotNull @Override public KClass<? extends View> getPrimaryView(){
-        return KClassesToClassesKt.getRWController();
+    public static void main(String[] args){
+        new Thread(new IRCCBot()).start();
+        launch(args);
     }
 
-    public static void main(String[] args){
-        new Thread(new IRCCBot());
-        launch(args);
+    @NotNull @Override public KClass<? extends View> getPrimaryView(){
+        return KClassesToClassesKt.getRWController();
     }
 }
